@@ -1,6 +1,7 @@
 let z = [];
 let k =[];
 var slider;
+var abb;
 
 class AnimatedLine {
   constructor(x1, y1, x2, y2, segmentLength, spaceLength) {
@@ -117,16 +118,28 @@ class AnimatedLine {
 function setup() {
  
   createCanvas(400, 400);
+  
+  createP('');
+  var speedlabel = createSpan("speed");
+  speedlabel.style('color', 'yellow');
+  
   strw = 25;
-  slider = createSlider(0.01,1,0.1,0.01);
+  slider1 = createSlider(0.01,1,0.1,0.01);
+  createP('');
+  var redlabel = createSpan("red");
+  redlabel.style('color', 'red');
+  sliderred = createSlider(0,255,100,1);
+  createP('');
+  var greenlabel = createSpan("green");
+  greenlabel.style('color', 'green');
+  slidergreen = createSlider(0,255,100,1);
+  createP('');
+   var bluelabel = createSpan("blue");
+  bluelabel.style('color', 'blue');
+  sliderblue = createSlider(0,255,100,1);
  
   
   
-  
-  
-  r = random(255);
-  g = random(100,200);
-  b = random(100);
   
   u = 8;
   c = 8;
@@ -144,9 +157,9 @@ function setup() {
    
    k.push(new AnimatedLine(200, 200+x,400-x, 400, u,c));
    
-   z.push(random(255));
-   z.push(random(100,200));
-   z.push(random(200));
+   z.push(random(1));
+   z.push(random(1));
+   z.push(random(1));
      
      
    }
@@ -162,9 +175,9 @@ function setup() {
    k.push(new AnimatedLine(200, 200+x,400-x, 400, u,c));
    k.push(new AnimatedLine(200+x, 200,400, x, u,c));
    k.push(new AnimatedLine(400, 400-x,200+x, 200, u,c));
-   z.push(random(255));
-   z.push(random(100,200));
-   z.push(random(100));
+   z.push(random(1));
+   z.push(random(1));
+   z.push(random(1));
    }
    
   for(var dd=0;dd<k.length;dd++){
@@ -219,7 +232,7 @@ function draw() {
     strokeWeight(strw);
     gg = y/strw
       
-      stroke(z[3*gg],z[3*gg+1],z[3*gg+2]);
+      stroke(z[3*gg]*sliderred.value(),z[3*gg+1]*slidergreen.value(),z[3*gg+2]*sliderblue.value());
      line(0,y,200-y,200);
       
       line(0,400-y,200-y,200);
@@ -246,7 +259,7 @@ function draw() {
          stroke(0)
         strokeWeight(3);
         k[j].display();
-        k[j].move(slider.value());
+        k[j].move(slider1.value());
          k[j].dis();}
     
        
