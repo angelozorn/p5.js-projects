@@ -1,10 +1,15 @@
+var InputBox;
+var mytext="";
 function setup() { 
   height = 600;
   width = 400;
   createCanvas(width, height);
+  inputBox = createInput().attribute('maxlength', 3);
+  inputBox.size(200,20);
+  inputBox.input(myInputEvent);
   
   
-   textSize(width/15);
+   textSize(width/12);
   textAlign(CENTER, CENTER);
  
   
@@ -20,7 +25,7 @@ function draw() {
   
   stroke(255);
   strokeWeight(5);
-  setLineDash([10,10]);
+  setLineDash([7]);
   
   
   
@@ -39,7 +44,7 @@ function draw() {
   
   for (var q = 0; q<=12*w; q += w*3){
     for(var p = 0; p<=12*h; p += h*3){
-      text('415',q,height-p);
+      text(mytext,q,height-p);
     
       
         
@@ -47,6 +52,10 @@ function draw() {
     }
   }
    
+}
+
+function myInputEvent(){
+  mytext = this.value();
 }
 
 function setLineDash(list) {
